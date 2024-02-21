@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import React from "react";
@@ -6,7 +7,11 @@ import coverPage from "../../assets/coverphoto.png";
 import icon from "../../assets/images-removebg-preview (1).png";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LockResetIcon from "@mui/icons-material/LockReset";
+import Link from "next/link";
 const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+
+  const inputChangeHandler = (e: any) => {};
   return (
     <>
       <Grid
@@ -22,16 +27,20 @@ const ForgotPassword = () => {
           xs={12}
           md={6}
           sx={{
-            justifyContent: "center",
-            alignItems: "center",
             display: {
               xs: "none",
               md: "flex",
             },
             bgcolor: "#25293C",
+            position: "relative",
           }}
         >
-          <Image src={coverPage} alt="coverpage" />
+          <Image
+            src={coverPage}
+            alt="coverpage"
+            fill
+            style={{objectFit: "contain"}}
+          />
         </Grid>
         <Grid
           item
@@ -99,6 +108,7 @@ const ForgotPassword = () => {
                     label="Email Address"
                     name="email"
                     autoComplete="on"
+                    // value={email}
                     InputLabelProps={{
                       style: { color: "#ACAEC6" }, // Replace with your desired color
                     }}
@@ -106,10 +116,11 @@ const ForgotPassword = () => {
                       inputProps: {
                         style: {
                           WebkitBoxShadow: "0 0 0 1000px #2F3349 inset",
-                          WebkitTextFillColor: "#ACAEC6",                          
+                          WebkitTextFillColor: "#ACAEC6",
                         },
                       },
                     }}
+                    onChange={(e) => inputChangeHandler(e)}
                   />
                 </Stack>
                 <Stack>
@@ -121,23 +132,26 @@ const ForgotPassword = () => {
                         bgcolor: "#8554D1",
                       },
                       mt: "20px",
+                      textTransform: "none",
                     }}
                   >
                     Send Reset Link
                   </Button>
                 </Stack>
-                <Stack
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "end",
-                    alignItems: "center",
-                    mt: 1,
-                    fontFamily: "sans-serif",
-                  }}
-                >
-                  {<ArrowBackIosIcon sx={{ width: "15px" }} />}Back to Login
-                </Stack>
+                <Link href="/login">
+                  <Stack
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "end",
+                      alignItems: "center",
+                      mt: 1,
+                      fontFamily: "sans-serif",
+                    }}
+                  >
+                    {<ArrowBackIosIcon sx={{ width: "15px" }} />}Back to Login
+                  </Stack>
+                </Link>
               </form>
             </Stack>
           </Stack>
